@@ -1,0 +1,58 @@
+let kvizoviList = document.getElementById("kvizoviList");
+
+let kvizovi = [];
+
+window.addEventListener("DOMContentLoaded", () => {
+  initTable();
+});
+
+function createTableRow(kviz) {
+  kvizoviList.innerHTML += `
+    <div
+      id="kviz${kviz.id}"
+      class="p-6 flex flex-col gap-6 bg-white shadow-lg rounded-lg border border-gray-200 max-w-[400px] hover:shadow-xl transition-shadow"
+    >
+      <div class="flex flex-col gap-3">
+        <p class="text-sm text-gray-600">
+          ${kviz.value}
+        </p>
+      </div>
+    </div>
+    `;
+}
+
+function initTable() {
+  kvizovi = provjeriLS();
+
+  if (kvizovi.length > 0) {
+    document.getElementById("imaKvizovaPoruka").style.display = "flex";
+    document.getElementById("nemaKvizovaPoruka").style.display = "none";
+  } else document.getElementById("nemaKvizovaPoruka").style.display = "flex";
+}
+
+kvizovi = provjeriLS();
+kvizovi.forEach((kviz) => createTableRow(kviz));
+
+function deleteKviz(id) {
+  kvizovi = provjeriLS();
+  let kviz = kvizovi.find((kviz) => kviz.id == id);
+  if (
+    kviz &&
+    confirm("Jeste li sigurni da zelite obrisati kviz '" + kviz.name + "'")
+  ) {
+    kvizovi = kvizovi.filter((kviz) => kviz.id != id);
+
+    localStorage.setItem("sale", JSON.stringify(kvizovi));
+
+    document.getElementById("kviz" + id).remove();
+
+    if (kvizovi.length == 0) {
+      document.getElementById("imaKvizovaPoruka").style.display = "none";
+      document.getElementById("nemaKvizovaPoruka").style.display = "flex";
+    }
+  }
+}
+
+function editKviz(id) {
+  window.location.href += "edit/?id=" + id;
+}

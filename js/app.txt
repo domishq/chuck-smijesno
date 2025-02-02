@@ -1,0 +1,48 @@
+console.log("hello");
+
+let sala;
+
+function provjeriLS() {
+    const kvizovi = localStorage.getItem("sale");
+    return kvizovi ? JSON.parse(kvizovi) : [];
+}
+
+//https://api.chucknorris.io/jokes/random
+
+document.getElementById("load").addEventListener("click", loadData);
+document.getElementById("save").addEventListener("click", saveData);
+
+function loadData(){
+    /* kreiranje objekta */
+    const xhr = new XMLHttpRequest();
+    console.log(xhr);
+
+    /* otvaramo konekciju */
+    xhr.open('GET', 'https://api.chucknorris.io/jokes/random', true);
+
+    /* ajax poziv */
+    xhr.onreadystatechange = function(){
+        if(this.status === 200 && this.readyState === 4){
+            
+            sala = JSON.parse(this.responseText);
+            sala.value[0] = sala.value[0].toUpperCase();
+            document.getElementById("salaText").innerHTML = sala.value;
+            console.log(sala);
+        }
+    };
+    xhr.send();
+}
+
+loadData();
+
+function saveData(){
+    let sale = provjeriLS();
+
+    sale.push(sala);
+
+    localStorage.setItem("sale", JSON.stringify(sale));
+
+    createTableRow(sala);
+
+    initTable();
+}

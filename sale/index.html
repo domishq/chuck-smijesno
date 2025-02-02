@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuck Smiješno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 px-5">
+    <header class="flex items-center justify-between mb-10 mt-4">
+      <a
+        href="../"
+        class="flex items-center gap-3 text-gray-700 hover:text-gray-900"
+      >
+        <img src="../../images/arrowLeft.png" alt="Back" class="w-8 h-8" />
+        <p class="text-lg font-medium">Nazad</p>
+      </a>
+      <img src="../../images/chuck2.png" alt="Logo" class="h-0 sm:h-8 md:h-20" />
+      <a 'href="dodaj"' class="flex">
+        <button
+          class="flex items-center justify-center bg-white aspect-square w-14 rounded-md gap-2"
+        >
+          <i class="fa fa-plus text-xl"></i>
+        </button>
+      </a>
+    </header>
+
+    <section>
+      <div
+      class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6 space-y-6"
+    >
+      <div>
+        <p class="text-gray-700 font-medium text-3xl" id="salaText"></p>
+      </div>
+      </div>
+      <div>
+        <div class="flex justify-between max-w-xl mx-auto mt-8">
+          <button
+            type="button"
+            id="save"
+            class="px-6 py-3 bg-gray-500 text-white font-medium rounded-md hover:bg-gray-600 focus:ring-2 focus:ring-gray-400"
+          >
+            Spremi
+          </button>
+          <button
+          type="button"
+          id="load"
+          class="px-6 py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400"
+        >
+          Dalje
+        </button>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col max-w-[1440px] mt-[64px] gap-8"
+      style="display: none"
+      id="imaKvizovaPoruka"
+    >
+      <h1 class="text-5xl font-bold text-gray-800">Spremljene sale</h1>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        id="kvizoviList"
+      ></div>
+    </section>
+
+    <div
+      class="flex flex-col gap-6 w-full h-screen justify-center items-center text-center"
+      id="nemaKvizovaPoruka"
+      style="display: none"
+    >
+      <h1 class="font-bold text-5xl text-gray-800">Trenutno nema sačuvanih šala</h1>
+      <h2 class="font-medium text-2xl text-gray-600 max-w-[600px]">
+        Kliknite na <span class="font-semibold">plus</span> u gornjem desnom
+        ćošku da vidite nedavne šale.
+      </h2>
+    </div>
+  </body>
+  <script src="../js/app.js"></script>
+  <script src="../js/kvizovi.js"></script>
+</html>
